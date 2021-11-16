@@ -99,7 +99,7 @@ public class cam3 extends LinearOpMode {
      */
     private TFObjectDetector tfod;
 
-    @Override
+    //@Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
