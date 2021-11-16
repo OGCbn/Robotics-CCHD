@@ -107,10 +107,25 @@ public class new_con extends OpMode
         double frontRightPower = (y - x - rx) / denominator;
         double backRightPower = (y + x - rx) / denominator;
 
-        topL.setPower(frontLeftPower*.75);
-        backL.setPower(backLeftPower*.75);
-        topR.setPower(frontRightPower*.75);
-        backR.setPower(backRightPower*.75);
+        //topL.setPower(frontLeftPower*.75);
+        //backL.setPower(backLeftPower*.75);
+        //topR.setPower(frontRightPower*.75);
+        //backR.setPower(backRightPower*.75);
+        
+        if(gamepad1.right_bumper)
+        {
+            topL.setPower(frontLeftPower);
+            backL.setPower(backLeftPower);
+            topR.setPower(frontRightPower);
+            backR.setPower(backRightPower);
+        }
+        else if(!gamepad1.right_bumper)
+        {
+            topL.setPower(frontLeftPower*.75);
+            backL.setPower(backLeftPower*.75);
+            topR.setPower(frontRightPower*.75);
+            backR.setPower(backRightPower*.75);
+        }
 
 
 
