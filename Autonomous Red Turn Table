@@ -1,0 +1,253 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+/**
+ * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
+ * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
+ * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
+ * class is instantiated on the Robot Controller and executed.
+ *
+ * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
+ * It includes all the skeletal structure that all linear OpModes contain.
+ *
+ * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
+ * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+ */
+
+@Autonomous(name="Red Turntable", group="Linear Opmode")
+//@Disabled
+public class atomtest2 extends LinearOpMode {
+
+    // Declare OpMode members.
+    private ElapsedTime runtime = new ElapsedTime();
+    DcMotor topL;
+    DcMotor topR;
+    DcMotor backL;
+    DcMotor backR;
+    DcMotor arm;
+    DcMotor rotate;
+    DcMotor arm2;
+    Servo hand;
+
+    @Override
+    public void runOpMode() {
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+
+        // Initialize the hardware variables. Note that the strings used here as parameters
+        // to 'get' must correspond to the names assigned during the robot configuration
+        // step (using the FTC Robot Controller app on the phone).
+        topL = hardwareMap.dcMotor.get("topLeft");
+        topR = hardwareMap.dcMotor.get("topRight");
+        backL = hardwareMap.dcMotor.get("backLeft");
+        backR = hardwareMap.dcMotor.get("backRight");
+        arm = hardwareMap.dcMotor.get("arm");
+        arm2 = hardwareMap.dcMotor.get("arm2");
+        hand = hardwareMap.servo.get("hand");
+        rotate = hardwareMap.dcMotor.get("rotate");
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+        //Makes the bot strafe right toward the shipping hub
+        //topL.setPower(-.37);topR.setPower(.38);backR.setPower(-.38);backL.setPower(.38);sleep(2500);
+        strafeR(.38,2000);
+        //Makes the bot go forward
+        //topL.setPower(-.28);backL.setPower(-.28);topR.setPower(.28);backR.setPower(.28);sleep(550);
+        straitF(.28,500);
+        //Raises the robots arm
+        arm.setPower(.3);
+        arm2.setPower(-.3);
+        sleep(1800);
+        //Helps the arm not die
+        arm.setPower(-.2);
+        arm2.setPower(.2);
+        sleep(50);
+        //Makes arm stop
+        arm.setPower(0);
+        arm2.setPower(0);
+        sleep(300);
+        //Stops the bot and opens the hand
+        hand.setPosition(1);
+        //topL.setPower(0);topR.setPower(0);backR.setPower(0);backL.setPower(0);
+        stopM();
+        sleep(500);
+        //Reverse
+        //topL.setPower(.38);backL.setPower(.38);topR.setPower(-.38);backR.setPower(-.38);sleep(1550);
+        straitB(.38,1500);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //turn left
+        topL.setPower(.50);
+        backL.setPower(.50);
+        topR.setPower(.50);
+        backR.setPower(.50);
+        sleep(650);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //Makes the bot foraid toward the turntable
+        // topL.setPower(-.37);topR.setPower(.38);backR.setPower(.38);backL.setPower(-.37);sleep(3800);
+        straitF(.38,3500);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //Makes the bot turn right toward the Square hub
+        topL.setPower(-.5);
+        topR.setPower(-.5);
+        backR.setPower(-.5);
+        backL.setPower(-.5);
+        sleep(720);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //Makes the bot strafe left toward the turntable
+        //topL.setPower(.27);topR.setPower(-.28);backR.setPower(.28);backL.setPower(-.28);sleep(300);
+        strafeL(.2,300);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //Reverse
+        //topL.setPower(.01);backL.setPower(.01);topR.setPower(-.01);backR.setPower(-.01);sleep(300);
+        straitB(.01,300);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(200);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(500);
+        //Slow rotation
+        rotate.setPower(-.7);
+        sleep(3200);
+        //stop rotation
+        rotate.setPower(0);
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(50);
+
+
+        //Makes the bot turn right toward the Square hub
+
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(50);
+        //move forward toward hub
+        //topL.setPower(-.37);topR.setPower(.38);backR.setPower(.38);backL.setPower(-.37);sleep(2000);
+        straitF(.30,2000);
+        //Stop robot
+        //topL.setPower(0);backL.setPower(0);topR.setPower(0);backR.setPower(0);
+        stopM();
+        sleep(50);
+        //turn right
+        topL.setPower(-.50);
+        backL.setPower(-.50);
+        topR.setPower(-.50);
+        backR.setPower(-.50);
+        sleep(700);
+
+
+
+
+        // run until the end of the match (driver presses STOP)
+//        while (opModeIsActive()) {
+//
+//            // Setup a variable for each drive wheel to save power level for telemetry
+//            double leftPower;
+//            double rightPower;
+//
+//            // Choose to drive using either Tank Mode, or POV Mode
+//            // Comment out the method that's not used.  The default below is POV.
+//
+//            // POV Mode uses left stick to go forward, and right stick to turn.
+//            // - This uses basic math to combine motions and is easier to drive straight.
+////            double drive = -gamepad1.left_stick_y;
+////            double turn  =  gamepad1.right_stick_x;
+////            leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
+////            rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+////
+////            // Tank Mode uses one stick to control each wheel.
+////            // - This requires no math, but it is hard to drive forward slowly and keep straight.
+////            // leftPower  = -gamepad1.left_stick_y ;
+////            // rightPower = -gamepad1.right_stick_y ;
+////
+////            // Send calculated power to wheels
+////            leftDrive.setPower(leftPower);
+////            rightDrive.setPower(rightPower);
+//
+//            topL.setPower(1);
+//            topR.setPower(1);
+//            backL.setPower(-1);
+//            backR.setPower(-1);
+//            sleep(1000);
+//
+//            sleep(1000);
+//
+//            // Show the elapsed game time and wheel power.
+//            telemetry.addData("Status", "Run Time: " + runtime.toString());
+//            //telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+//            telemetry.update();
+//        }
+    }
+    public void strafeL(double pow, int time)
+    {
+        double negative = pow * -1;
+        topL.setPower(pow);
+        backL.setPower(negative);
+        topR.setPower(negative);
+        backR.setPower(pow);
+        sleep(time);
+    }
+    public void strafeR(double pow, int time)
+    {
+        double negative = pow * -1;
+        topL.setPower(negative);
+        backL.setPower(pow);
+        topR.setPower(pow);
+        backR.setPower(negative);
+        sleep(time);
+    }
+    public void straitF(double pow, int time)
+    {
+        double negative = pow * -1;
+        topL.setPower(negative);
+        topR.setPower(pow);
+        backL.setPower(negative);
+        backR.setPower(pow);
+        sleep(time);
+    }
+    public void straitB(double pow, int time)
+    {
+        double negative = pow * -1;
+        topL.setPower(pow);
+        topR.setPower(negative);
+        backL.setPower(pow);
+        backR.setPower(negative);
+        sleep(time);
+    }
+    public void turn90R()
+    {
+        topL.setPower(.7);
+        topR.setPower(.7);
+        backL.setPower(.7);
+        backR.setPower(.7);
+        sleep(600);
+    }
+    public void stopM()
+    {
+        topL.setPower(0);
+        topR.setPower(0);
+        backL.setPower(0);
+        backR.setPower(0);
+    }
+}
