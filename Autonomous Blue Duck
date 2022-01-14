@@ -32,12 +32,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 
 /**
@@ -53,9 +50,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Blue Turntable", group="Linear Opmode")
+@Autonomous(name="Test", group="Linear Opmode")
 //@Disabled
-public class blue_t extends LinearOpMode {
+public class atomtest extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -86,77 +83,93 @@ public class blue_t extends LinearOpMode {
         rotate = hardwareMap.dcMotor.get("rotate");
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        //Starts the bot off forward
-        topL.setPower(-.38);
-        backL.setPower(-.38);
-        topR.setPower(.38);
+        //Makes the bot strafe left toward the shipping hub
+        topL.setPower(.37);
+        topR.setPower(-.38);
         backR.setPower(.38);
+        backL.setPower(-.38);
+        sleep(3000);
+        //Makes the bot go forward
+        topL.setPower(-.28);
+        backL.setPower(-.28);
+        topR.setPower(.28);
+        backR.setPower(.28);
+        sleep(550);
+        //Raises the robots arm
+        arm.setPower(.3);
+        arm2.setPower(-.3);
+        sleep(1800);
+        //Helps the arm not die
+        arm.setPower(-.2);
+        arm2.setPower(.2);
+        sleep(50);
+        //Makes arm stop
+       arm.setPower(0);
+       arm2.setPower(0);
+        sleep(300);
+        //Stops the bot and opens the hand
+        hand.setPosition(1);
+        topL.setPower(0);
+        topR.setPower(0);
+        backR.setPower(0);
+        backL.setPower(0);
         sleep(500);
-        //Slows the bot down
-        topL.setPower(-.10);
-        backL.setPower(-.10);
-        topR.setPower(.10);
-        backR.setPower(.10);
+        //Reverse
+        topL.setPower(.38);
+        backL.setPower(.38);
+        topR.setPower(-.38);
+        backR.setPower(-.38);
+        sleep(1800);
+        //Stop robot
+        topL.setPower(0);
+        backL.setPower(0);
+        topR.setPower(0);
+        backR.setPower(0);
         sleep(200);
-        //Stops the bot
-        topL.setPower(0);
-        backL.setPower(0);
-        topR.setPower(0);
-        backR.setPower(0);
-        sleep(500);
-        //Makes the bot strafe left toward the turntable
+        //turn left
+        topL.setPower(.50);
+        backL.setPower(.50);
+        topR.setPower(.50);
+        backR.setPower(.50);
+        sleep(730);
+        //reverse to turn table
         topL.setPower(.38);
-        backL.setPower(-.38);
-        topR.setPower(-.38);
-        backR.setPower(.38);
-        sleep(3550);
-        //Makes the bot spin the duck off the turntable
+        backL.setPower(.38);
+        topR.setPower(-.39);
+        backR.setPower(-.39);
+        sleep(3400);
+        //Stop robot
         topL.setPower(.05);
-        topR.setPower(0);
         backL.setPower(.05);
-        backR.setPower(0);
-        rotate.setPower(-.5);
-        sleep(3300);
-        //Makes the bot strafe right toward the shipping hub
+        topR.setPower(-.05);
+        backR.setPower(-.05);
+        sleep(50);
+        //Slow rotation
+        rotate.setPower(.7);
+        sleep(3200);
+        //stop rotation
         rotate.setPower(0);
+        sleep(50);
+        //Makes the bot strafe left toward the Square hub
         topL.setPower(-.38);
         topR.setPower(.38);
         backR.setPower(-.38);
         backL.setPower(.38);
-        sleep(5000);
-        //Raises the arm
+        sleep(2300);
+        //Stop robot
         topL.setPower(0);
+        backL.setPower(0);
         topR.setPower(0);
         backR.setPower(0);
-        backL.setPower(0);
-        arm.setPower(-.5);
-        arm2.setPower(-.5);
-        sleep(1150);
-        //Moves forward toward the shipping hub
-        topL.setPower(-.38);
-        backL.setPower(-.38);
-        topR.setPower(.38);
-        backR.setPower(.38);
-        sleep(5000);
-        //Stops the bot
-        hand.setPosition(0);
-        topL.setPower(0);
-        topR.setPower(0);
-        backR.setPower(0);
-        backL.setPower(0);
+        sleep(50);
+        //reverse
+        topL.setPower(.1);
+        backL.setPower(.1);
+        topR.setPower(-.1);
+        backR.setPower(-.1);
         sleep(1000);
-        //Makes the bot go backwards
-        topL.setPower(.38);
-        backL.setPower(.38);
-        topR.setPower(-.38);
-        backR.setPower(-.38);
-        sleep(5000);
-        //Strafes the bot right into the warehouse
-        topL.setPower(-.38);
-        topR.setPower(.38);
-        backR.setPower(-.38);
-        backL.setPower(.38);
-        sleep(4000);
+
+
 
 
         // run until the end of the match (driver presses STOP)
@@ -200,4 +213,3 @@ public class blue_t extends LinearOpMode {
 //        }
     }
 }
-
